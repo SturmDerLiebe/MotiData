@@ -4,11 +4,11 @@ import type { SessionRepositoryInterface } from "./SessionRepositoryInterface.js
 type ApiBaseUrlType =
     (typeof BaseRepository.Api)[keyof typeof BaseRepository.Api];
 
-export type BaseRepositoryConstructorArgs = {
+export interface BaseRepositoryConstructorArgs {
     apiBaseUrl: ApiBaseUrlType;
     publicApiKey: string;
     sessionRepository: SessionRepositoryInterface;
-};
+}
 
 export abstract class BaseRepository {
     static Api = { mockaroo: "https://my.api.mockaroo.com" };
@@ -32,7 +32,7 @@ export abstract class BaseRepository {
         const HEADERS = new Headers();
         HEADERS.append(
             CustomHeadersNames.sessionId,
-            await this.sessionRepository?.readSessionId(),
+            await this.sessionRepository.readSessionId(),
         );
 
         HEADERS.append("X-API-Key", this.publicApiKey);
@@ -52,7 +52,7 @@ export abstract class BaseRepository {
         method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
         queryParams?: URLSearchParams;
         extraHeaders?: Headers;
-        body?: BodyInit | null;
+        body?: RequestInit["body"];
         signal?: AbortSignal | null;
     }) {
         const headers = await this.buildBaseHeaders();
@@ -60,16 +60,21 @@ export abstract class BaseRepository {
             headers.append(headerName, headerValue);
         });
 
-        return new Request(`${this.apiBaseUrl}/${route}?${queryParams}`, {
-            method,
-            headers,
-            body,
-            signal: signal,
-        });
+        return new Request(
+            `${this.apiBaseUrl}/${route}?${queryParams.toString()}`,
+            {
+                method,
+                headers,
+                body,
+                signal: signal,
+            },
+        );
     }
 
-    protected async handleResponseAfterAuthentication(response: Response) {
-        this.sessionRepository.saveSessionId(
+    protected async handleResponseAfterAuthentication(
+        response: Response,
+    ): Promise<void> {
+        await this.sessionRepository.saveSessionId(
             response.headers.get(CustomHeadersNames.sessionId) ?? "",
         );
     }
