@@ -28,7 +28,7 @@ export class UserRepository extends BaseRepository {
             }),
         );
 
-        await this.handleResponseAfterAuthentication(RESPONSE);
+        await this._handleResponseAfterAuthentication(RESPONSE);
 
         return RESPONSE;
     }

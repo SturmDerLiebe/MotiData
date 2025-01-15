@@ -74,7 +74,10 @@ export abstract class BaseRepository {
         );
     }
 
-    protected async handleResponseAfterAuthentication(
+    /**
+     * @protected
+     */
+    async _handleResponseAfterAuthentication(
         response: Response,
     ): Promise<void> {
         await this.sessionRepository.saveSessionId(
