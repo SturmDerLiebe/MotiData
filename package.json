@@ -22,8 +22,9 @@
     "main": "index.js",
     "scripts": {
         "build": "tsc",
-        "ci": "npm run build",
+        "ci": "npm run build && npm run check-format",
         "format": "prettier --write .",
+        "check-format": "prettier --check .",
         "test": "vitest run"
     },
     "devDependencies": {
