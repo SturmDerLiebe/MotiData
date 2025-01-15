@@ -1,8 +1,8 @@
 export interface SessionRepositoryInterface {
-    readSessionId(): Promise<string>;
+    readSessionId(): string | Promise<string>;
 
-    saveSessionId(sessionId: string): Promise<void>;
+    saveSessionId(sessionId: string): void | Promise<void>;
 
     /** Retrieves and Checks if {@link sessionId} is not empty */
-    hasValidSessionId(): Promise<boolean>;
+    hasValidSessionId(): boolean | Promise<boolean>;
 }
