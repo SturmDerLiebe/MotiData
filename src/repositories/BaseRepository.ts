@@ -35,7 +35,7 @@ export abstract class BaseRepository {
             await this.sessionRepository.readSessionId(),
         );
 
-        HEADERS.append("X-API-Key", this.publicApiKey);
+        HEADERS.append(CustomHeadersNames.apiKey, this.publicApiKey);
 
         return HEADERS;
     }
