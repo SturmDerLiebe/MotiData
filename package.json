@@ -26,8 +26,9 @@
         "format": "prettier --write .",
         "check-format": "prettier --check .",
         "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-        "ci": "npm run build && npm run check-format && npm run check-exports",
-        "test": "vitest run"
+        "watch": "vitest",
+        "test": "vitest run",
+        "ci": "npm run build && npm run check-format && npm run check-exports && npm run test"
     },
     "devDependencies": {
         "@arethetypeswrong/cli": "^0.17.3",
