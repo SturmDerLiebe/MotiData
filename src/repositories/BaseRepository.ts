@@ -40,7 +40,10 @@ export abstract class BaseRepository {
         return HEADERS;
     }
 
-    protected async bulildRequest({
+    /**
+     * @protected
+     */
+    async _bulildRequest({
         route,
         method,
         queryParams = new URLSearchParams(),

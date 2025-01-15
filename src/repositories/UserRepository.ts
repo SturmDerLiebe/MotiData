@@ -20,7 +20,7 @@ export class UserRepository extends BaseRepository {
      */
     async registerUser(body: RegistrationDetails) {
         const RESPONSE = await fetch(
-            await this.bulildRequest({
+            await this._bulildRequest({
                 route: BaseRepository.Routes.registration,
                 method: "POST",
                 queryParams: new URLSearchParams({ username: body.username }),
@@ -39,7 +39,7 @@ export class UserRepository extends BaseRepository {
      */
     async verifyUser(verificationCode: string) {
         return fetch(
-            await this.bulildRequest({
+            await this._bulildRequest({
                 route: BaseRepository.Routes.activation,
                 method: "POST",
                 queryParams: new URLSearchParams({ code: verificationCode }),
@@ -54,7 +54,7 @@ export class UserRepository extends BaseRepository {
      */
     async updatePersonalGoal(goalPerWeek: number) {
         return fetch(
-            await this.bulildRequest({
+            await this._bulildRequest({
                 route: BaseRepository.Routes.personalGoal,
                 method: "PUT",
                 queryParams: new URLSearchParams({
@@ -73,7 +73,7 @@ export class UserRepository extends BaseRepository {
      */
     async getUserInfo(abortSignal: AbortSignal) {
         return fetch(
-            await this.bulildRequest({
+            await this._bulildRequest({
                 route: BaseRepository.Routes.userInfo,
                 method: "GET",
                 signal: abortSignal,
