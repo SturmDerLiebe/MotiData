@@ -19,6 +19,7 @@
         "module": "NodeNext",
         "outDir": "dist",
         "rootDir": "src",
+        "lib": ["es2024"],
         "declaration": true,
         "sourceMap": true,
         "declarationMap": true
