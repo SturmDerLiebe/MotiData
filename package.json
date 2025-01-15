@@ -1,31 +1,33 @@
 {
-  "name": "motidata",
-  "version": "1.0.0",
-  "description": "Data retrieval library for services (e.g. App) accessing MotiMate's main Api",
-  "keywords": [
-    "api-calls"
-  ],
-  "homepage": "https://github.com/SturmDerLiebe/MotiData#readme",
-  "bugs": {
-    "url": "https://github.com/SturmDerLiebe/MotiData/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SturmDerLiebe/MotiData.git"
-  },
-  "files": [
-    "dist"
-  ],
-  "license": "GPL-3.0",
-  "author": "Christian Sturm",
-  "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "build": "tsc",
-    "ci": "npm run build",
-    "test": "vitest run"
-  },
-  "devDependencies": {
-    "typescript": "^5.7.3"
-  }
+    "name": "motidata",
+    "version": "1.0.0",
+    "description": "Data retrieval library for services (e.g. App) accessing MotiMate's main Api",
+    "keywords": [
+        "api-calls"
+    ],
+    "homepage": "https://github.com/SturmDerLiebe/MotiData#readme",
+    "bugs": {
+        "url": "https://github.com/SturmDerLiebe/MotiData/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SturmDerLiebe/MotiData.git"
+    },
+    "files": [
+        "dist"
+    ],
+    "license": "GPL-3.0",
+    "author": "Christian Sturm",
+    "type": "module",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "ci": "npm run build",
+        "format": "prettier --write .",
+        "test": "vitest run"
+    },
+    "devDependencies": {
+        "prettier": "^3.4.2",
+        "typescript": "^5.7.3"
+    }
 }
