@@ -51,13 +51,13 @@ export abstract class BaseRepository {
         body,
         signal,
     }: {
-        route: (typeof BaseRepository.Routes)[keyof typeof BaseRepository.Routes];
+        route: string;
         method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
         queryParams?: URLSearchParams;
         extraHeaders?: Headers;
         body?: RequestInit["body"];
         signal?: AbortSignal | null;
-    }) {
+    }): Promise<Request> {
         const headers = await this.buildBaseHeaders();
         extraHeaders.forEach((headerValue, headerName) => {
             headers.append(headerName, headerValue);
