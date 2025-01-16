@@ -14,7 +14,7 @@ export class UserRepository extends BaseRepository {
     }
 
     /**
-     * Sends a request to register the new user with {@link RegistrationDetails} and handles saving the sessionID from the Responses Cookie
+     * Sends a request to register the new user with {@link RegistrationDetails} and handles saving the sessionID from the Responses Header
      * @throws any `fetch()` related error
      * @throws any {@link sessionRepository} related Error
      */
