@@ -28,7 +28,7 @@
         "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
         "watch": "vitest",
         "test": "vitest run",
-        "ci": "npm run build && npm run check-format && npm run check-exports && npm run test"
+        "ci": "npm run lint && npm run check-format && npm run test && npm run check-exports && npm run build"
     },
     "devDependencies": {
         "@arethetypeswrong/cli": "^0.17.3",
