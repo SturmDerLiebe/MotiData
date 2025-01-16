@@ -1,4 +1,5 @@
 import type { RegistrationDetails } from "../DTOs/RegistrationDTO.js";
+import type { SimpleResponse } from "../DTOs/SimpleResponseDTO.js";
 import {
     BaseRepository,
     type BaseRepositoryConstructorArgs,
@@ -18,7 +19,7 @@ export class UserRepository extends BaseRepository {
      * @throws any `fetch()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async registerUser(body: RegistrationDetails) {
+    async registerUser(body: RegistrationDetails): Promise<SimpleResponse> {
         const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.registration,
@@ -30,7 +31,7 @@ export class UserRepository extends BaseRepository {
 
         await this._handleResponseAfterAuthentication(RESPONSE);
 
-        return RESPONSE;
+        return { ok: RESPONSE.ok, statusCode: RESPONSE.status };
     }
 
     /**
