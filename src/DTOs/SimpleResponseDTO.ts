@@ -18,9 +18,21 @@ export async function transformToSimpleResponse<
     return {
         ok: fetchResponse.ok,
         statusCode: fetchResponse.status,
-        data:
-            fetchResponse.headers.get("Content-Type") === "application/json"
-                ? ((await fetchResponse.json()) as ResponseDTO)
-                : undefined,
+        data: (await extractDataBasedOnContentType(
+            fetchResponse,
+        )) as ResponseDTO,
     };
+}
+
+export async function extractDataBasedOnContentType(
+    fetchResponse: Response,
+): Promise<unknown> {
+    const CONTENT_TYPE = fetchResponse.headers.get("Content-Type");
+    if (CONTENT_TYPE === null) {
+        return undefined;
+    } else if (CONTENT_TYPE.includes("application/json")) {
+        return await fetchResponse.json();
+    } else if (CONTENT_TYPE.includes("text/plain")) {
+        return await fetchResponse.text();
+    }
 }
