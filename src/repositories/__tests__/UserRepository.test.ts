@@ -2,18 +2,10 @@ import { test, expect } from "vitest";
 import { BaseRepository } from "../BaseRepository.js";
 import { UserRepository } from "../UserRepository.js";
 import { CustomHeadersNames } from "../../constants/CustomHeaders.js";
+import { MockSessionRepository } from "./mocks/SessionRepositoryMock.js";
 
 const EXPECTED_TEST_KEY = "TEST12345";
 const EXPECTED_SESSION_ID = "ID1111";
-const MockSessionRepository = {
-    readSessionId() {
-        return EXPECTED_SESSION_ID;
-    },
-    saveSessionId(_sessionId: string) {},
-    hasValidSessionId() {
-        return true;
-    },
-};
 
 test("Should append SessionId and ApiKey as Headers", async () => {
     //GIVEN
