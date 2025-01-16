@@ -1,5 +1,8 @@
 import type { RegistrationDetails } from "../DTOs/RegistrationDTO.js";
-import type { SimpleResponse } from "../DTOs/SimpleResponseDTO.js";
+import {
+    transformToSimpleResponse,
+    type SimpleResponse,
+} from "../DTOs/SimpleResponseDTO.js";
 import {
     BaseRepository,
     type BaseRepositoryConstructorArgs,
@@ -17,6 +20,7 @@ export class UserRepository extends BaseRepository {
     /**
      * Sends a request to register the new user with {@link RegistrationDetails} and handles saving the sessionID from the Responses Header
      * @throws any `fetch()` related error
+     * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
     async registerUser(body: RegistrationDetails): Promise<SimpleResponse> {
@@ -31,7 +35,7 @@ export class UserRepository extends BaseRepository {
 
         await this._handleResponseAfterAuthentication(RESPONSE);
 
-        return { ok: RESPONSE.ok, statusCode: RESPONSE.status };
+        return transformToSimpleResponse(RESPONSE);
     }
 
     /**
