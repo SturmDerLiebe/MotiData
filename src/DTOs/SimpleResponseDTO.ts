@@ -18,8 +18,9 @@ export async function transformToSimpleResponse<
     return {
         ok: fetchResponse.ok,
         statusCode: fetchResponse.status,
-        data: fetchResponse.headers.has("application/json")
-            ? ((await fetchResponse.json()) as ResponseDTO)
-            : undefined,
+        data:
+            fetchResponse.headers.get("Content-Type") === "application/json"
+                ? ((await fetchResponse.json()) as ResponseDTO)
+                : undefined,
     };
 }
