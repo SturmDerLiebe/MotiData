@@ -1,4 +1,4 @@
-import type { RegistrationDetails } from "../constants/DTOs/RegistrationDTO.js";
+import type { RegistrationDetails } from "../DTOs/RegistrationDTO.js";
 import {
     BaseRepository,
     type BaseRepositoryConstructorArgs,
