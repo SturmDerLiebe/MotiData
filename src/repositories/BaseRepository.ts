@@ -28,6 +28,9 @@ export abstract class BaseRepository {
         public sessionRepository: SessionRepositoryInterface,
     ) {}
 
+    /**
+     * @throws any {@link sessionRepository} related Error
+     */
     private async buildBaseHeaders() {
         const HEADERS = new Headers();
         HEADERS.append(
@@ -42,6 +45,7 @@ export abstract class BaseRepository {
 
     /**
      * @protected
+     * @throws any {@link sessionRepository} related Error
      */
     async _bulildRequest({
         route,
@@ -76,6 +80,7 @@ export abstract class BaseRepository {
 
     /**
      * @protected
+     * @throws any {@link sessionRepository} related Error
      */
     async _handleResponseAfterAuthentication(
         response: Response,
