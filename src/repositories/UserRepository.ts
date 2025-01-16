@@ -3,6 +3,7 @@ import {
     transformToSimpleResponse,
     type SimpleResponse,
 } from "../DTOs/SimpleResponseDTO.js";
+import type { UserDetailsDTO } from "../DTOs/UserDetailsDTO.js";
 import {
     BaseRepository,
     type BaseRepositoryConstructorArgs,
@@ -40,10 +41,11 @@ export class UserRepository extends BaseRepository {
 
     /**
      * @throws any `fetch()` related error
+     * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async verifyUser(verificationCode: string) {
-        return fetch(
+    async verifyUser(verificationCode: string): Promise<SimpleResponse> {
+        const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.activation,
                 method: "POST",
@@ -51,14 +53,17 @@ export class UserRepository extends BaseRepository {
                 body: JSON.stringify(verificationCode),
             }),
         );
+
+        return transformToSimpleResponse(RESPONSE);
     }
 
     /**
      * @throws any `fetch()` related error
+     * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async updatePersonalGoal(goalPerWeek: number) {
-        return fetch(
+    async updatePersonalGoal(goalPerWeek: number): Promise<SimpleResponse> {
+        const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.personalGoal,
                 method: "PUT",
@@ -68,21 +73,26 @@ export class UserRepository extends BaseRepository {
                 body: JSON.stringify(goalPerWeek),
             }),
         );
+
+        return transformToSimpleResponse(RESPONSE);
     }
 
     /**
-     *
-     *
      * @throws any `fetch()` related error
+     * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async getUserInfo(abortSignal: AbortSignal) {
-        return fetch(
+    async getUserInfo(
+        abortSignal: AbortSignal,
+    ): Promise<SimpleResponse<UserDetailsDTO>> {
+        const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.userInfo,
                 method: "GET",
                 signal: abortSignal,
             }),
         );
+
+        return transformToSimpleResponse(RESPONSE);
     }
 }
