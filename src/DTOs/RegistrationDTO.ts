@@ -1,24 +1,15 @@
-/**
- * A Data Transfer Object containing details about a new user to be registered
- */
-export class RegistrationDTO {
-    static formFieldNames = {
-        username: "username",
-        email: "email",
-        password: "password",
-    };
+export interface RegistrationDTO {
+    username: string;
+    email: string;
+    password: string;
+}
 
-    static buildFromObject({
+export const RegistrationHelper = {
+    buildFromObject({
         username = "",
         email = "",
         password = "",
-    }: Record<string, string>) {
-        return new RegistrationDTO(username, email, password);
-    }
-
-    constructor(
-        public username: string,
-        public email: string,
-        public password: string,
-    ) {}
-}
+    }: RegistrationDTO) {
+        return { username, email, password };
+    },
+};
