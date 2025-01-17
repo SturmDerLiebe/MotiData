@@ -1,6 +1,6 @@
 import { expect, test } from "vitest";
 import {
-    extractDataBasedOnContentType,
+    _extractDataBasedOnContentType,
     transformToSimpleResponse,
     type SimpleResponse,
 } from "../SimpleResponseDTO.js";
@@ -30,7 +30,12 @@ test("should handle default, non json response", async () => {
     //GIVEN
     const EXPECTED_DATA = "12345";
     const RESPONSE = new Response(EXPECTED_DATA);
+    //WHEN
+    const ACTUAL = await _extractDataBasedOnContentType(RESPONSE);
 
+    //THEN
+    expect(ACTUAL).toEqual(EXPECTED_DATA);
+});
     //WHEN
     const ACTUAL = await extractDataBasedOnContentType(RESPONSE);
 
