@@ -1,4 +1,4 @@
-import type { RegistrationDetails } from "../DTOs/RegistrationDTO.js";
+import type { RegistrationDTO } from "../DTOs/RegistrationDTO.js";
 import {
     SimpleResponseHelpers,
     type SimpleResponse,
@@ -19,12 +19,12 @@ export class UserRepository extends BaseRepository {
     }
 
     /**
-     * Sends a request to register the new user with {@link RegistrationDetails} and handles saving the sessionID from the Responses Header
+     * Sends a request to register the new user with {@link RegistrationDTO} and handles saving the sessionID from the Responses Header
      * @throws any `fetch()` related error
      * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async registerUser(body: RegistrationDetails): Promise<SimpleResponse> {
+    async registerUser(body: RegistrationDTO): Promise<SimpleResponse> {
         const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.registration,

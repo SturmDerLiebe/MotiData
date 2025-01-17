@@ -1,7 +1,7 @@
 /**
  * A Data Transfer Object containing details about a new user to be registered
  */
-export class RegistrationDetails {
+export class RegistrationDTO {
     static formFieldNames = {
         username: "username",
         email: "email",
@@ -13,7 +13,7 @@ export class RegistrationDetails {
         email = "",
         password = "",
     }: Record<string, string>) {
-        return new RegistrationDetails(username, email, password);
+        return new RegistrationDTO(username, email, password);
     }
 
     constructor(
