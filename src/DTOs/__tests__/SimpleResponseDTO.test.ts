@@ -1,7 +1,6 @@
 import { expect, test } from "vitest";
 import {
-    _extractDataBasedOnContentType,
-    transformToSimpleResponse,
+    SimpleResponseHelpers,
     type SimpleResponse,
 } from "../SimpleResponseDTO.js";
 
@@ -16,7 +15,9 @@ test("should transform to SimpleResponseDTO", async () => {
 
     //WHEN
     const ACTUAL =
-        await transformToSimpleResponse<typeof EXPECTED_DATA>(RESPONSE);
+        await SimpleResponseHelpers.transformToSimpleResponse<
+            typeof EXPECTED_DATA
+        >(RESPONSE);
 
     //THEN
     expect(ACTUAL).toEqual<SimpleResponse<typeof EXPECTED_DATA>>({
@@ -31,7 +32,8 @@ test("should handle default, non json response", async () => {
     const EXPECTED_DATA = "12345";
     const RESPONSE = new Response(EXPECTED_DATA);
     //WHEN
-    const ACTUAL = await _extractDataBasedOnContentType(RESPONSE);
+    const ACTUAL =
+        await SimpleResponseHelpers._extractDataBasedOnContentType(RESPONSE);
 
     //THEN
     expect(ACTUAL).toEqual(EXPECTED_DATA);
@@ -47,7 +49,8 @@ test("should handle Content-Type=application/json response", async () => {
     });
 
     //WHEN
-    const ACTUAL = await _extractDataBasedOnContentType(RESPONSE);
+    const ACTUAL =
+        await SimpleResponseHelpers._extractDataBasedOnContentType(RESPONSE);
 
     //THEN
     expect(ACTUAL).toEqual(EXPECTED_DATA);
