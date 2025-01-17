@@ -18,13 +18,13 @@ export async function transformToSimpleResponse<
     return {
         ok: fetchResponse.ok,
         statusCode: fetchResponse.status,
-        data: (await extractDataBasedOnContentType(
+        data: (await _extractDataBasedOnContentType(
             fetchResponse,
         )) as ResponseDTO,
     };
 }
 
-export async function extractDataBasedOnContentType(
+export async function _extractDataBasedOnContentType(
     fetchResponse: Response,
 ): Promise<unknown> {
     const CONTENT_TYPE = fetchResponse.headers.get("Content-Type");
