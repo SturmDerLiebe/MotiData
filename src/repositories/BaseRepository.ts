@@ -37,6 +37,7 @@ export abstract class BaseRepository {
             [CustomHeadersNames.sessionId]:
                 await this.sessionRepository.readSessionId(),
             [CustomHeadersNames.apiKey]: this.publicApiKey,
+            [ContentType]: MimeTypes.applicationJson,
         });
 
         return HEADERS;
