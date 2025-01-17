@@ -1,6 +1,6 @@
 import type { RegistrationDetails } from "../DTOs/RegistrationDTO.js";
 import {
-    transformToSimpleResponse,
+    SimpleResponseHelpers,
     type SimpleResponse,
 } from "../DTOs/SimpleResponseDTO.js";
 import type { UserDetailsDTO } from "../DTOs/UserDetailsDTO.js";
@@ -36,7 +36,7 @@ export class UserRepository extends BaseRepository {
 
         await this._handleResponseAfterAuthentication(RESPONSE);
 
-        return transformToSimpleResponse(RESPONSE);
+        return SimpleResponseHelpers.transformToSimpleResponse(RESPONSE);
     }
 
     /**
@@ -54,7 +54,7 @@ export class UserRepository extends BaseRepository {
             }),
         );
 
-        return transformToSimpleResponse(RESPONSE);
+        return SimpleResponseHelpers.transformToSimpleResponse(RESPONSE);
     }
 
     /**
@@ -74,7 +74,7 @@ export class UserRepository extends BaseRepository {
             }),
         );
 
-        return transformToSimpleResponse(RESPONSE);
+        return SimpleResponseHelpers.transformToSimpleResponse(RESPONSE);
     }
 
     /**
@@ -93,6 +93,6 @@ export class UserRepository extends BaseRepository {
             }),
         );
 
-        return transformToSimpleResponse(RESPONSE);
+        return SimpleResponseHelpers.transformToSimpleResponse(RESPONSE);
     }
 }
