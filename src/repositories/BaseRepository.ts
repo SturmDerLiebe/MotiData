@@ -44,6 +44,7 @@ export abstract class BaseRepository {
     }
 
     /**
+     * Sets the Content-Type to application/json by default. Can be overridden by settin {@link extraHeaders}.
      * @protected
      * @throws any {@link sessionRepository} related Error
      */
