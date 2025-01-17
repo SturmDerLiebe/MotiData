@@ -36,8 +36,18 @@ test("should handle default, non json response", async () => {
     //THEN
     expect(ACTUAL).toEqual(EXPECTED_DATA);
 });
+
+test("should handle Content-Type=application/json response", async () => {
+    //GIVEN
+    const EXPECTED_DATA = { testKey: "testValue" };
+    const RESPONSE = new Response(JSON.stringify(EXPECTED_DATA), {
+        headers: new Headers({
+            "Content-Type": "application/json; charset=utf-8",
+        }),
+    });
+
     //WHEN
-    const ACTUAL = await extractDataBasedOnContentType(RESPONSE);
+    const ACTUAL = await _extractDataBasedOnContentType(RESPONSE);
 
     //THEN
     expect(ACTUAL).toEqual(EXPECTED_DATA);
