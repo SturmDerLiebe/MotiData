@@ -1,3 +1,4 @@
+import { ContentType, MimeTypes } from "../constants/ContentTypeHeader.js";
 import { CustomHeadersNames } from "../constants/CustomHeaders.js";
 import type { SessionRepositoryInterface } from "./SessionRepositoryInterface.js";
 
@@ -32,13 +33,11 @@ export abstract class BaseRepository {
      * @throws any {@link sessionRepository} related Error
      */
     private async buildBaseHeaders() {
-        const HEADERS = new Headers();
-        HEADERS.append(
-            CustomHeadersNames.sessionId,
-            await this.sessionRepository.readSessionId(),
-        );
-
-        HEADERS.append(CustomHeadersNames.apiKey, this.publicApiKey);
+        const HEADERS = new Headers({
+            [CustomHeadersNames.sessionId]:
+                await this.sessionRepository.readSessionId(),
+            [CustomHeadersNames.apiKey]: this.publicApiKey,
+        });
 
         return HEADERS;
     }

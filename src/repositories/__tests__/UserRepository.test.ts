@@ -4,6 +4,7 @@ import { UserRepository } from "../UserRepository.js";
 import { CustomHeadersNames } from "../../constants/CustomHeaders.js";
 import { MockSessionRepository } from "./mocks/SessionRepositoryMock.js";
 import { afterEach } from "node:test";
+import { ContentType, MimeTypes } from "../../constants/ContentTypeHeader.js";
 
 const EXPECTED_TEST_KEY = "TEST12345";
 
@@ -17,7 +18,7 @@ afterEach(() => {
     MockSessionRepository.saveSessionId("");
 });
 
-test("should append SessionId and ApiKey as Headers", async () => {
+test("should append SessionId, ApiKey and Json-ContentType as Headers", async () => {
     //GIVEN
     const EXPECTED_SESSION_ID = "ID1111";
     MockSessionRepository.saveSessionId(EXPECTED_SESSION_ID);
@@ -30,6 +31,7 @@ test("should append SessionId and ApiKey as Headers", async () => {
     //THEN
     expect(ACTUAL.get(CustomHeadersNames.sessionId)).toBe(EXPECTED_SESSION_ID);
     expect(ACTUAL.get(CustomHeadersNames.apiKey)).toBe(EXPECTED_TEST_KEY);
+    expect(ACTUAL.get(ContentType)).toBe(MimeTypes.applicationJson);
 });
 
 test("should save session id from header to session repo", async () => {
