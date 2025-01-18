@@ -30,6 +30,7 @@
         "test": "vitest run",
         "ci": "npm run lint && npm run check-format && npm run test && npm run check-exports && npm run build",
         "local-release": "changeset version && changeset publish",
+        "ci-release": "npm run build && changeset publish",
         "prepublishOnly": "npm run ci"
     },
     "devDependencies": {
