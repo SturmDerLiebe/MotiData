@@ -29,6 +29,7 @@
         "watch": "vitest",
         "test": "vitest run",
         "ci": "npm run lint && npm run check-format && npm run test && npm run check-exports && npm run build",
+        "changeset": "changeset",
         "local-release": "changeset version && changeset publish",
         "release": "changeset publish",
         "prepublishOnly": "npm run ci"
