@@ -1,6 +1,6 @@
 {
     "name": "motidata",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Data retrieval library for services (e.g. App) accessing MotiMate's main Api",
     "keywords": [
         "api-calls"
