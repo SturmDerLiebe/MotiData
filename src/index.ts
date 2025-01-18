@@ -1,6 +1,7 @@
 // Repositories:
 export type { SessionRepositoryInterface } from "./repositories/SessionRepositoryInterface.ts";
 export { UserRepository } from "./repositories/UserRepository.js";
+export { GroupRepository } from "./repositories/GroupRepository.js";
 //DTOs:
 export type { SimpleResponseDTO as SimpleResponse } from "./DTOs/SimpleResponseDTO.ts";
 export type { RegistrationDTO } from "./DTOs/RegistrationDTO.ts";
