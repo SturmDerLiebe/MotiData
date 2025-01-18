@@ -11,6 +11,15 @@ export interface BaseRepositoryConstructorArgs {
     sessionRepository: SessionRepositoryInterface;
 }
 
+export interface RequestParams {
+    route: string;
+    method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
+    queryParams?: URLSearchParams;
+    extraHeaders?: Headers;
+    body?: RequestInit["body"];
+    signal?: AbortSignal | null;
+}
+
 export abstract class BaseRepository {
     static Api = { mockaroo: "https://my.api.mockaroo.com" };
 
@@ -55,14 +64,7 @@ export abstract class BaseRepository {
         extraHeaders = new Headers(),
         body,
         signal,
-    }: {
-        route: string;
-        method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
-        queryParams?: URLSearchParams;
-        extraHeaders?: Headers;
-        body?: RequestInit["body"];
-        signal?: AbortSignal | null;
-    }): Promise<Request> {
+    }: RequestParams): Promise<Request> {
         const headers = await this.buildBaseHeaders();
         extraHeaders.forEach((headerValue, headerName) => {
             headers.append(headerName, headerValue);
