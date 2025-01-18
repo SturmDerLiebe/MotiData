@@ -1,6 +1,6 @@
 import type { Serializable } from "child_process";
 
-export interface SimpleResponse<
+export interface SimpleResponseDTO<
     BodyType extends Serializable | undefined = undefined,
 > {
     ok: boolean;
@@ -9,7 +9,7 @@ export interface SimpleResponse<
 }
 
 /**
- * Collection of {@link SimpleResponse} Helpers
+ * Collection of {@link SimpleResponseDTO} Helpers
  */
 export const SimpleResponseHelpers = {
     /**
@@ -18,7 +18,7 @@ export const SimpleResponseHelpers = {
      */
     async transformToSimpleResponse<
         ResponseDTO extends Serializable | undefined = undefined,
-    >(fetchResponse: Response): Promise<SimpleResponse<ResponseDTO>> {
+    >(fetchResponse: Response): Promise<SimpleResponseDTO<ResponseDTO>> {
         return {
             ok: fetchResponse.ok,
             statusCode: fetchResponse.status,

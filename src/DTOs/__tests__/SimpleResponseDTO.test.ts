@@ -1,7 +1,7 @@
 import { expect, test } from "vitest";
 import {
     SimpleResponseHelpers,
-    type SimpleResponse,
+    type SimpleResponseDTO,
 } from "../SimpleResponseDTO.js";
 
 test("should transform to SimpleResponseDTO", async () => {
@@ -20,7 +20,7 @@ test("should transform to SimpleResponseDTO", async () => {
         >(RESPONSE);
 
     //THEN
-    expect(ACTUAL).toEqual<SimpleResponse<typeof EXPECTED_DATA>>({
+    expect(ACTUAL).toEqual<SimpleResponseDTO<typeof EXPECTED_DATA>>({
         ok: RESPONSE.ok,
         statusCode: RESPONSE.status,
         data: EXPECTED_DATA,

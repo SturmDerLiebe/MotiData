@@ -1,7 +1,7 @@
 import type { RegistrationDTO } from "../DTOs/RegistrationDTO.js";
 import {
     SimpleResponseHelpers,
-    type SimpleResponse,
+    type SimpleResponseDTO,
 } from "../DTOs/SimpleResponseDTO.js";
 import type { UserDetailsDTO } from "../DTOs/UserDetailsDTO.js";
 import {
@@ -24,7 +24,7 @@ export class UserRepository extends BaseRepository {
      * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async registerUser(body: RegistrationDTO): Promise<SimpleResponse> {
+    async registerUser(body: RegistrationDTO): Promise<SimpleResponseDTO> {
         const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.registration,
@@ -44,7 +44,7 @@ export class UserRepository extends BaseRepository {
      * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async verifyUser(verificationCode: string): Promise<SimpleResponse> {
+    async verifyUser(verificationCode: string): Promise<SimpleResponseDTO> {
         const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.activation,
@@ -62,7 +62,7 @@ export class UserRepository extends BaseRepository {
      * @throws any `Response.json()` related error
      * @throws any {@link sessionRepository} related Error
      */
-    async updatePersonalGoal(goalPerWeek: number): Promise<SimpleResponse> {
+    async updatePersonalGoal(goalPerWeek: number): Promise<SimpleResponseDTO> {
         const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.personalGoal,
@@ -84,7 +84,7 @@ export class UserRepository extends BaseRepository {
      */
     async getUserInfo(
         abortSignal: AbortSignal,
-    ): Promise<SimpleResponse<UserDetailsDTO>> {
+    ): Promise<SimpleResponseDTO<UserDetailsDTO>> {
         const RESPONSE = await fetch(
             await this._bulildRequest({
                 route: BaseRepository.Routes.userInfo,

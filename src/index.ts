@@ -2,7 +2,7 @@
 export type { SessionRepositoryInterface } from "./repositories/SessionRepositoryInterface.ts";
 export { UserRepository } from "./repositories/UserRepository.js";
 //DTOs:
-export type { SimpleResponse } from "./DTOs/SimpleResponseDTO.ts";
+export type { SimpleResponseDTO as SimpleResponse } from "./DTOs/SimpleResponseDTO.ts";
 export type { RegistrationDTO } from "./DTOs/RegistrationDTO.ts";
 export type { UserDetailsDTO } from "./DTOs/UserDetailsDTO.ts";
 //DTO-Helpers:
