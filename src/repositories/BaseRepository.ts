@@ -11,7 +11,7 @@ export interface BaseRepositoryConstructorParam {
     sessionRepository: SessionRepositoryInterface;
 }
 
-export interface RequestParams {
+interface RequestParams {
     route: string;
     method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
     queryParams?: URLSearchParams;
