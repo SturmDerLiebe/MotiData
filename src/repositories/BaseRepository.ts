@@ -1,3 +1,4 @@
+import type { Serializable } from "child_process";
 import { ContentType, MimeTypes } from "../constants/ContentTypeHeader.js";
 import { CustomHeadersNames } from "../constants/CustomHeaders.js";
 import type { SessionRepositoryInterface } from "./SessionRepositoryInterface.js";
@@ -79,6 +80,19 @@ export abstract class BaseRepository {
                 signal: signal,
             },
         );
+    }
+
+    /**
+     * @protected
+     */
+    async _buildJsonRequest(
+        unserializedBody: Serializable,
+        requestParams: Omit<RequestParams, "body">,
+    ): Promise<Request> {
+        return this._bulildRequest({
+            ...requestParams,
+            body: JSON.stringify(unserializedBody),
+        });
     }
 
     /**
