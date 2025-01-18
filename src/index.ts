@@ -6,6 +6,8 @@ export { GroupRepository } from "./repositories/GroupRepository.js";
 export type { SimpleResponseDTO as SimpleResponse } from "./DTOs/SimpleResponseDTO.ts";
 export type { RegistrationDTO } from "./DTOs/RegistrationDTO.ts";
 export type { UserDetailsDTO } from "./DTOs/UserDetailsDTO.ts";
+export type { GroupDetailsDTO } from "./DTOs/GroupDetailsDTO.ts";
+export type { GroupMemberProfileDTO } from "./DTOs/GroupMemberDTO.ts";
 export type {
     GroupMessageDTO,
     BaseGroupMessageDTO,
