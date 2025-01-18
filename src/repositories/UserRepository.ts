@@ -6,11 +6,11 @@ import {
 import type { UserDetailsDTO } from "../DTOs/UserDetailsDTO.js";
 import {
     BaseRepository,
-    type BaseRepositoryConstructorArgs,
+    type BaseRepositoryConstructorParam,
 } from "./BaseRepository.js";
 
 export class UserRepository extends BaseRepository {
-    constructor(baseArgs: BaseRepositoryConstructorArgs) {
+    constructor(baseArgs: BaseRepositoryConstructorParam) {
         super(
             baseArgs.apiBaseUrl,
             baseArgs.publicApiKey,

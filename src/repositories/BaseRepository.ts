@@ -5,7 +5,7 @@ import type { SessionRepositoryInterface } from "./SessionRepositoryInterface.js
 type ApiBaseUrlType =
     (typeof BaseRepository.Api)[keyof typeof BaseRepository.Api];
 
-export interface BaseRepositoryConstructorArgs {
+export interface BaseRepositoryConstructorParam {
     apiBaseUrl: ApiBaseUrlType;
     publicApiKey: string;
     sessionRepository: SessionRepositoryInterface;
