@@ -9,7 +9,6 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
     release:
-        if: github.repository == 'SturmDerLiebe/MotiData'
         name: Release
         permissions:
             contents: write
